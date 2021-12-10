@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Posts</h1>
+          <p class="lead">Veja abaixo alguns Posts.</p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="posts">
+            <% posts.forEach((item) => { %>
+                <div class="card" style="margin-bottom: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= item.title %></h5>
+                        <p class="card-text"><%= item.text %></p>
+                        <a href="#" class="btn btn-primary">Visitar</a>
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+
+    <%- include('partials/foot.ejs') %>
+
+</body>
+</html>
