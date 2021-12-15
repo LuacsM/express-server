@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Cadastro de Posts</h1>
+          <p class="lead">Abaixo você pode cadastar alguns posts.</p>
+        </div>
+    </div>
+
+    <% if (cadastrado) { %>
+        <div class="alert alert-primary" role="alert" style="margin-right: 20px; margin-left: 20px;">
+            Cadastro realizado com sucesso!
+        </div>
+    <% } %>
+
+    <div class="container-fluid">
+        <form action="/salvar-post" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Digite o Título</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="titulo">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Digite o Texto</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="texto"></textarea>
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+              </div>
+        </form>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+
+    <%- include('partials/foot.ejs') %>
+
+</body>
+</html>
