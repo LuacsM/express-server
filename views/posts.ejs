@@ -13,26 +13,29 @@
           <p class="lead">Veja abaixo alguns Posts.</p>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="width: 70%;">
         <div class="posts">
             <% posts.forEach((item) => { %>
                 <div class="card" style="margin-bottom: 10px;">
-                    <div class="card-body">
-
+                    <div class="card-header">
+                        Estrelas: 
                         <% if(item.stars){ %>
                             <% for( let index = 0; index < item.stars; index++ ) { %>
                                 <img src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/04/Estrela-PNG-1024x1024.png" alt="" width="20">
                             <% } %>
                         <% } %> 
+                      </div>
+                    <div class="card-body">
                         
-                        <h5 class="card-title"><%= item.title %></h5>
-                        <p class="card-text"><%= item.text %></p>
+                        <h5 class="card-title"><%= item.titulo %></h5>
+                        <p class="card-text"><%= item.texto %></p>
                         <a href="#" class="btn btn-primary">Visitar</a>
                     </div>
                 </div>
             <% }) %> 
         </div>
     </div>
+    
 
     <%- include('partials/footer.ejs') %>
 

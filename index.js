@@ -30,30 +30,15 @@ app.get('/posts', (req, res) => { // pode resumir como "req" e "res"
         if (error){
             console.log('Ops, deu erro!', error)
         }else {
-            console.log(JSON.parse(content))
+            const post = JSON.parse(content)
+
+            res.render('posts', {
+                title: 'Getag - Posts',
+                posts: post
+            })
         }
     })
     
-    
-    res.render('posts', {
-        title: 'Getag - Posts',
-        posts: [
-            {
-                title: 'Novidades no mundo da tecnologia',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra dolor sit amet mauris vehicula mollis. Proin aliquam, nisl nec aliquet aliquet, enim tellus aliquam orci, eu dapibus lectus leo ac felis. Curabitur lobortis risus turpis, in ultrices nulla sollicitudin a. Duis sed neque in eros ultricies venenatis eget sit amet elit. Morbi sed tortor et ipsum ultricies feugiat. Proin purus magna, congue at posuere eu, tincidunt sit amet risus. Nunc porta risus vel ligula tristique accumsan. Ut rutrum libero orci, at facilisis nisi luctus sed.',
-                stars: 3
-            },
-            {
-                title: 'Criando um servidor com node.js',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra dolor sit amet mauris vehicula mollis. Proin aliquam, nisl nec aliquet aliquet, enim tellus aliquam orci, eu dapibus lectus leo ac felis. Curabitur lobortis risus turpis, in ultrices nulla sollicitudin a. Duis sed neque in eros ultricies venenatis eget sit amet elit. Morbi sed tortor et ipsum ultricies feugiat. Proin purus magna, congue at posuere eu, tincidunt sit amet risus. Nunc porta risus vel ligula tristique accumsan. Ut rutrum libero orci, at facilisis nisi luctus sed.',
-            },
-            {
-                title: 'JavaScript é a linguagem mais usada no mundo!',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra dolor sit amet mauris vehicula mollis. Proin aliquam, nisl nec aliquet aliquet, enim tellus aliquam orci, eu dapibus lectus leo ac felis. Curabitur lobortis risus turpis, in ultrices nulla sollicitudin a. Duis sed neque in eros ultricies venenatis eget sit amet elit. Morbi sed tortor et ipsum ultricies feugiat. Proin purus magna, congue at posuere eu, tincidunt sit amet risus. Nunc porta risus vel ligula tristique accumsan. Ut rutrum libero orci, at facilisis nisi luctus sed.',
-                stars: 5
-            }
-        ]
-    })
 })
 
 app.get('/cadastro-posts', (req, res) => { // pode resumir como "req" e "res"
@@ -65,7 +50,7 @@ app.get('/cadastro-posts', (req, res) => { // pode resumir como "req" e "res"
 })
 
 app.post('/salvar-post', (req, res)=>{
-    const {titulo, texto} = req.body
+    const {titulo, texto, stars} = req.body
 
     const data = fs.readFileSync('./store/posts.json')
     const posts = JSON.parse(data)
@@ -73,6 +58,7 @@ app.post('/salvar-post', (req, res)=>{
     posts.push({
         titulo,
         texto,
+        stars,
     })
 
     const postsString = JSON.stringify(posts)
@@ -92,3 +78,5 @@ app.use((req, res)=>{ // middleware
 // Executando o servidor
 const port = process.env.PORT || 8080
 app.listen(port, () => console.log(`server is listening on port ${port}`))
+
+
